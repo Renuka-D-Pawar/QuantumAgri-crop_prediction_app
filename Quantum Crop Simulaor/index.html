@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Crop Simulator</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌾</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+    <div class="bg-white p-8 rounded-xl shadow-xl max-w-md">
+        <h1 class="text-2xl font-bold mb-4 text-center">Quantum Crop Simulator</h1>
+        <p class="text-sm text-gray-600 mb-4 text-center">Enter environment details to get the best crop recommendation.</p>
+        
+        <label class="block font-semibold">Temperature (°C)</label>
+        <input type="number" id="temp" class="w-full border p-2 rounded-md mb-2" placeholder="e.g. 30">
+
+        <label class="block font-semibold">Humidity (%)</label>
+        <input type="number" id="humidity" class="w-full border p-2 rounded-md mb-2" placeholder="e.g. 70">
+
+        <label class="block font-semibold">Soil Type</label>
+        <select id="soil" class="w-full border p-2 rounded-md mb-2">
+            <option value="loamy">Loamy</option>
+            <option value="sandy">Sandy</option>
+            <option value="clay">Clay</option>
+        </select>
+
+        <button onclick="predictCrop()" class="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">Predict Crop</button>
+        
+        <div id="result" class="mt-4 text-lg font-semibold text-center"></div>
+    </div>
+
+    <script>
+        function predictCrop() {
+            let temp = document.getElementById('temp').value;
+            let humidity = document.getElementById('humidity').value;
+            let soil = document.getElementById('soil').value;
+            
+            let crop;
+            if (temp >= 25 && temp <= 35 && humidity >= 60 && soil === "loamy") {
+                crop = "🌾 Wheat";
+            } else if (temp >= 20 && temp <= 30 && humidity >= 50 && soil === "sandy") {
+                crop = "🌽 Corn";
+            } else if (temp >= 18 && temp <= 28 && humidity >= 70 && soil === "clay") {
+                crop = "🍚 Rice";
+            } else {
+                crop = "🚜 No suitable crop found!";
+            }
+            document.getElementById('result').innerText = "Recommended Crop: " + crop;
+        }
+    </script>
+</body>
+</html>
+
+
